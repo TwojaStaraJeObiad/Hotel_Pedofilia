@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hotel Pedofilja</title>
+		<meta charset="UTF-8">
+		<style>
+		body
+		{
+			background-color: lightgray;
+		}
+		h1
+		{
+			text-align: center;
+		}
+		h2
+		{
+			text-align: center;
+		}
+		
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+		<script>
+		
+		var x = document.getElementById("myAudio");
+
+		function playAudio() {
+		x.play();
+		}
+
+		function pauseAudio() {
+		x.pause();
+		}
+			
+			function odliczanie()
+			{
+				var teraz = new Date();
+				var godzina = teraz.getHours();
+				var minuty = teraz.getMinutes();
+				var sekundy = teraz.getSeconds();
+				
+				var sekundy2 = 60-sekundy;
+				var minuty2 = 36-minuty;
+				var godzina2 = 21-godzina;
+				
+				if(sekundy2==60) sekundy2 = 0;
+				
+				if(minuty2==60) minuty2 = 0;
+				if(godzina2==60) godzina2 = 0;
+				
+				if(minuty2<0)
+				{
+					minuty2 = 60 + minuty2;
+					godzina2 = godzina2 - 1;
+				}
+				if(sekundy2==0) minuty2 = minuty2+1;
+				if(godzina2<0) godzina2 = 24 + godzina2;
+				
+				if(godzina==21)
+				{
+					if(minuty==37)
+					{
+					sekundy2 = 0;
+					minuty2 = 0;
+					godzina2 = 0;
+					}
+				}
+				
+				if(godzina2<10) godzina2 = "0" + godzina2;
+				if(minuty2<10) minuty2 = "0" + minuty2;
+				if(sekundy2<10) sekundy2 = "0" + sekundy2;
+				
+				var napis2 = godzina2 + ":" + minuty2 + ":" + sekundy2;
+				document.getElementById("iledopapiezowej").innerHTML = napis2;
+				
+				if(godzina<10) godzina = "0" + godzina;
+				if(minuty<10) minuty = "0" + minuty;
+				if(sekundy<10) sekundy = "0" + sekundy;
+				var napis = godzina + ":" + minuty + ":" + sekundy;
+				document.getElementById("czas").innerHTML = napis;
+				
+				
+				if(godzina == 21)
+				{
+					if(minuty == 37)
+					{
+						document.getElementById("iledopapiezowej").style.color = "red";
+						$('#vid1').show();
+						$('#vid2').show();
+						$('#vid3').show();
+						$('#vid4').show();
+						$('#vid5').show();
+						$('#myAudio').show();
+						document.getElementById("myAudio").play();
+					}
+					else
+					{
+						document.getElementById("iledopapiezowej").style.color = "black";
+						$('#vid1').hide();
+						$('#vid2').hide();
+						$('#vid3').hide();
+						$('#vid4').hide();
+						$('#vid5').hide();
+						$('#myAudio').hide();
+						pauseAudio()
+						document.getElementById("myAudio").pause();
+					}
+				}
+				else
+				{
+					document.getElementById("iledopapiezowej").style.color = "black";
+					$('#vid1').hide();
+					$('#vid2').hide();
+					$('#vid3').hide();
+					$('#vid4').hide();
+					$('#vid5').hide();
+					$('#myAudio').hide();
+					pauseAudio()
+					document.getElementById("myAudio").pause();
+				}
+			}
+			setInterval(odliczanie, 1000);
+		</script>
+	</head>
+	<body>
+		<a href="index.html">Powrót</a>
+		<h1 style ="font-size: 80px" id="iledopapiezowej"></h1>
+		<h2 id="czas"></h2>
+		<video id="vid1" style="margin-left: 100px" autoplay muted controls loop> <source src="papiezowa.mp4" type="video/mp4"> </video>
+		<video id="vid2" autoplay muted controls loop> <source src="papiezowa.mp4" type="video/mp4"> </video>
+		<video id="vid3" autoplay muted controls loop> <source src="papiezowa.mp4" type="video/mp4"> </video>
+		<video id="vid4" autoplay muted controls loop> <source src="papiezowa.mp4" type="video/mp4"> </video>
+		<video id="vid5" autoplay muted controls loop> <source src="papiezowa.mp4" type="video/mp4"> </video>
+		<audio id="myAudio" autoplay>
+		<source src="papaj.mp3" type="audio/mpeg">
+		</audio>
+		
+	</body>
+</html>

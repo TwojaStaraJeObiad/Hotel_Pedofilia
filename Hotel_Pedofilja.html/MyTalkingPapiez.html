@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Talking Papież</title>
+		<meta charset="UTF-8">
+		<style>
+			body
+			{
+			background-color: lightgray;
+			}
+			.center
+			{
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#usta
+			{
+				position: absolute;
+				left: 601px;
+				top: 293px;
+			}
+			#myInput
+			{
+				position: center;
+				margin-left: 601px;
+			}
+		</style>
+		<script>
+			var pozycjaust = "300px";
+		</script>
+		
+	</head>
+	<body>
+		<a href="index.html">Powrót</a>
+		<br>
+		<img src="papiezmowi.png" class="center">
+		<img id="usta" src="papiezmowiusta.png">
+		<br>
+		<audio id="jeszczejak"> <source src="jeszczejak.mp3" type="audio/mpeg"></audio>
+		<audio id="nie"> <source src="nie.mp3" type="audio/mpeg"></audio>
+		<audio id="niewiem"> <source src="niewiem.mp3" type="audio/mpeg"></audio>
+		<br>
+		<input id="myInput" value="">
+
+	
+	<script>
+        function play_jeszczejak() {
+            document.getElementById("jeszczejak").play();
+        }
+		function play_nie() {
+            document.getElementById("nie").play();
+        }
+		function play_niewiem() {
+            document.getElementById("niewiem").play();
+        }
+	
+	var delayInMilliseconds = 1000; //1 second
+	
+	function mowi(x)
+	{
+		let a = Math.floor((Math.random()*3) + 1);
+		if(a==1)
+		{
+			play_jeszczejak();
+			delayInMilliseconds = 2000;
+		}
+		else if(a==2)
+		{
+			play_nie();
+			delayInMilliseconds = 1000;
+		}
+		else
+		{
+			play_niewiem();
+			delayInMilliseconds = 1000;
+		}
+		document.getElementById("usta").style.marginTop = x+"px";
+		setTimeout(function() {
+		document.getElementById("usta").style.marginTop = "0px";
+		}, delayInMilliseconds);
+		
+	}
+	
+	var input = document.getElementById("myInput");
+	input.addEventListener("keyup", function(event)
+	{
+		if (event.keyCode === 13)
+		{
+			event.preventDefault();
+			mowi(50);
+			input.value="";
+		}
+	});
+	</script>
+	</body>
+</html>
